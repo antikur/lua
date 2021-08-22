@@ -1,0 +1,154 @@
+local MainScreen = Instance.new("ScreenGui")
+local HomeFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+local MainTitle = Instance.new("TextLabel")
+local UIGradient_2 = Instance.new("UIGradient")
+local UICorner_2 = Instance.new("UICorner")
+local AC = Instance.new("TextButton")
+local UIGradient_3 = Instance.new("UIGradient")
+local AC_2 = Instance.new("TextButton")
+local UIGradient_4 = Instance.new("UIGradient")
+local noti = Instance.new("TextLabel")
+local UIGradient_5 = Instance.new("UIGradient")
+
+--Properties:
+
+MainScreen.Name = "MainScreen"
+MainScreen.Parent = game.CoreGui
+
+HomeFrame.Name = "HomeFrame"
+HomeFrame.Parent = MainScreen
+HomeFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HomeFrame.Position = UDim2.new(0.331753552, 0, 0.307060748, 0)
+HomeFrame.Size = UDim2.new(0, 461, 0, 213)
+HomeFrame.Active = true
+HomeFrame.Draggable = true
+
+UICorner.Parent = HomeFrame
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(15, 10, 39)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(15, 10, 39))}
+UIGradient.Parent = HomeFrame
+
+MainTitle.Name = "MainTitle"
+MainTitle.Parent = HomeFrame
+MainTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainTitle.Size = UDim2.new(0, 461, 0, 50)
+MainTitle.Font = Enum.Font.GothamBold
+MainTitle.Text = "Kur'$ploit | Made By $アンティクル💸#0911"
+MainTitle.TextColor3 = Color3.fromRGB(0, 0, 0)
+MainTitle.TextSize = 14.000
+
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(172, 71, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(172, 71, 255))}
+UIGradient_2.Parent = MainTitle
+
+UICorner_2.Parent = MainTitle
+
+AC.Name = "AC"
+AC.Parent = HomeFrame
+AC.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AC.Position = UDim2.new(0.490238577, 0, 0.287009746, 0)
+AC.Size = UDim2.new(0, 200, 0, 50)
+AC.Font = Enum.Font.SourceSansBold
+AC.Text = "Bypass AC"
+AC.TextColor3 = Color3.fromRGB(0, 0, 0)
+AC.TextScaled = true
+AC.TextSize = 14.000
+AC.TextWrapped = true
+AC.MouseButton1Down:connect(function()
+	--bypass sl2 AC, by kur
+
+	local gmt = getrawmetatable(game)
+	local old = gmt.__namecall
+
+	setreadonly(gmt, false)
+	gmt.__namecall = newcclosure(function(self, ...)
+		if tostring(self) == "FireServer" or tostring(self) == "InvokeServer" or tostring(self) == "Kick" then return end
+		return old(self, ...)
+	end)
+	setreadonly(gmt, true)
+end)
+
+UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(172, 71, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(172, 71, 255))}
+UIGradient_3.Parent = AC
+
+AC_2.Name = "AC"
+AC_2.Parent = HomeFrame
+AC_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AC_2.Position = UDim2.new(0.490238607, 0, 0.628597915, 0)
+AC_2.Size = UDim2.new(0, 200, 0, 49)
+AC_2.Font = Enum.Font.SourceSansBold
+AC_2.Text = "IY"
+AC_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+AC_2.TextScaled = true
+AC_2.TextSize = 14.000
+AC_2.TextWrapped = true
+AC_2.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+UIGradient_4.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(172, 71, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(172, 71, 255))}
+UIGradient_4.Parent = AC_2
+
+noti.Name = "noti"
+noti.Parent = HomeFrame
+noti.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+noti.BorderSizePixel = 0
+noti.Position = UDim2.new(0, 0, 0.291079819, 0)
+noti.Size = UDim2.new(0, 151, 0, 112)
+noti.Font = Enum.Font.SourceSansBold
+noti.Text = "i am aware how bad the gui looks, its main purpose is to bypass anti cheat."
+noti.TextColor3 = Color3.fromRGB(0, 0, 0)
+noti.TextScaled = true
+noti.TextSize = 14.000
+noti.TextWrapped = true
+
+UIGradient_5.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(172, 71, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(172, 71, 255))}
+UIGradient_5.Parent = noti
+
+-- Scripts:
+
+local function OEOPSQV_fake_script() -- HomeFrame.Drble 
+	local script = Instance.new('LocalScript', HomeFrame)
+
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+	
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(OEOPSQV_fake_script)()
